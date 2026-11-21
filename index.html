@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Desi Ratnasari</title>
+<meta name="description" content="Desi Ratnasari — Data Engineer and ETL Developer based in Jakarta. Dataiku DSS, Oracle Exadata, SQL, Python.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: single column "pipeline" story — hero with a live data-flow strip, then a job-log of results, then experience, projects, skills, contact. */
+:root {
+  --bg: #F5F9F8;
+  --surface: #FFFFFF;
+  --ink: #17292A;
+  --muted: #566B6B;
+  --line: #D6E3E1;
+  --teal: #2C6B66;
+  --teal-soft: #DCEDEA;
+  --pink: #F3C9D3;
+  --pink-ink: #9A3A55;
+  --lilac: #DCD6F4;
+  --good: #2E7D5B;
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1A1B; --surface: #152324; --ink: #E4EFEE; --muted: #9BB1B0; --line: #26393A;
+    --teal: #7CC7BE; --teal-soft: #1C3434; --pink: #5A2E3B; --pink-ink: #F5B8C8; --lilac: #2C2848; --good: #7DD3A8;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1A1B; --surface: #152324; --ink: #E4EFEE; --muted: #9BB1B0; --line: #26393A;
+  --teal: #7CC7BE; --teal-soft: #1C3434; --pink: #5A2E3B; --pink-ink: #F5B8C8; --lilac: #2C2848; --good: #7DD3A8;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0;
+  background: var(--bg); color: var(--ink);
+  font-family: var(--f-body); font-size: 16px; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 1040px; margin: 0 auto; }
+a { color: var(--teal); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; }
+section { padding-block: 3.5rem; border-top: 1px solid var(--line); }
+.eyebrow {
+  font-family: var(--f-mono); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted); margin: 0 0 .75rem;
+}
+h2 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 700; margin-bottom: 1.75rem; }
+
+/* Nav */
+nav { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; padding-block: 1.25rem; }
+.mark { font-family: var(--f-display); font-weight: 800; font-size: 1.1rem; text-decoration: none; color: var(--ink); }
+.mark span { color: var(--pink-ink); }
+nav ul { list-style: none; display: flex; gap: 1.25rem; margin: 0; padding: 0; flex-wrap: wrap; }
+nav ul a { color: var(--muted); text-decoration: none; font-size: .92rem; }
+nav ul a:hover { color: var(--ink); }
+
+/* Hero */
+.hero { padding-block: 3rem 3.5rem; display: grid; gap: 2.5rem; }
+.status {
+  display: inline-flex; align-items: center; gap: .5rem; font-family: var(--f-mono); font-size: .8rem;
+  background: var(--teal-soft); color: var(--teal); padding: .35rem .75rem; border-radius: 999px; width: fit-content;
+}
+.status i { width: 8px; height: 8px; border-radius: 50%; background: var(--good); display: block; animation: pulse 2s infinite; }
+@keyframes pulse { 50% { opacity: .35; } }
+.hero h1 { font-size: clamp(2.8rem, 9vw, 5.6rem); font-weight: 800; line-height: .95; letter-spacing: -.02em; margin-top: 1.25rem; }
+.hero h1 em { font-style: normal; color: var(--teal); }
+.hero .role { font-family: var(--f-display); font-size: clamp(1.15rem, 2.6vw, 1.5rem); font-weight: 500; color: var(--muted); margin: 1rem 0 0; }
+.hero p.lead { max-width: 62ch; font-size: 1.08rem; margin: 1.25rem 0 0; }
+.cta { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.75rem; }
+.btn {
+  font: 600 .95rem var(--f-body); padding: .7rem 1.2rem; border-radius: 10px; text-decoration: none;
+  border: 1.5px solid var(--ink); color: var(--ink); background: transparent; cursor: pointer;
+}
+.btn.primary { background: var(--ink); color: var(--bg); }
+.btn:hover { transform: translateY(-1px); }
+
+/* Pipeline strip */
+.pipe {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 1.25rem;
+  overflow-x: auto;
+}
+.pipe-head { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-family: var(--f-mono); font-size: .75rem; color: var(--muted); margin-bottom: 1rem; }
+.flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; align-items: center; gap: .5rem; min-width: 640px; }
+.node { border-radius: 12px; padding: .8rem .9rem; font-size: .85rem; }
+.node b { display: block; font-family: var(--f-display); font-size: 1rem; margin-bottom: .2rem; }
+.node small { font-family: var(--f-mono); font-size: .72rem; color: var(--muted); }
+.n1 { background: var(--lilac); } .n2 { background: var(--teal-soft); } .n3 { background: var(--pink); } .n4 { background: var(--teal-soft); }
+.n3 small { color: var(--ink); opacity: .75; }
+.link { width: 42px; height: 2px; background-image: linear-gradient(90deg, var(--teal) 50%, transparent 50%); background-size: 10px 2px; animation: flow 1s linear infinite; }
+@keyframes flow { to { background-position: 10px 0; } }
+
+/* Impact log */
+.log { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+.log-row { display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.5rem; padding: 1.25rem 1.5rem; border-top: 1px solid var(--line); align-items: center; }
+.log-row:first-child { border-top: 0; }
+.log-row h3 { font-size: 1.05rem; font-weight: 700; }
+.log-row p { margin: .25rem 0 0; color: var(--muted); font-size: .92rem; }
+.metric { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.metric .big { font-size: 1.6rem; font-weight: 600; color: var(--teal); display: block; line-height: 1.2; }
+.metric .sub { font-size: .78rem; color: var(--muted); }
+.bars { display: grid; gap: .35rem; margin-top: .5rem; }
+.bar { display: grid; grid-template-columns: 3.2rem 1fr; gap: .5rem; align-items: center; font-size: .72rem; color: var(--muted); }
+.bar span { height: 8px; border-radius: 4px; display: block; }
+.bar .before { background: var(--pink); }
+.bar .after { background: var(--teal); min-width: 3px; }
+
+/* Experience */
+.jobs { display: grid; gap: 1.75rem; }
+.job { display: grid; grid-template-columns: 11rem 1fr; gap: 1.5rem; }
+.job .when { font-family: var(--f-mono); font-size: .8rem; color: var(--muted); padding-top: .25rem; }
+.job h3 { font-size: 1.2rem; }
+.job .org { color: var(--teal); font-weight: 500; margin: .15rem 0 .5rem; }
+.job ul { margin: 0; padding-left: 1.1rem; display: grid; gap: .35rem; }
+.job li { max-width: 68ch; }
+.job li strong { font-family: var(--f-mono); font-weight: 600; font-size: .92em; }
+
+/* Projects */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1rem; }
+.proj { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 1.25rem; display: grid; gap: .5rem; align-content: start; }
+.proj h3 { font-size: 1.05rem; }
+.proj p { margin: 0; color: var(--muted); font-size: .92rem; }
+.tags { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .25rem; }
+.tag { font-family: var(--f-mono); font-size: .7rem; padding: .15rem .5rem; border-radius: 6px; background: var(--teal-soft); color: var(--teal); }
+.sub-h { font-family: var(--f-display); font-size: 1.1rem; font-weight: 700; margin: 2.25rem 0 1rem; }
+
+/* Skills */
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+.skills h3 { font-size: .8rem; font-family: var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: .6rem; }
+.chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+.chip { border: 1px solid var(--line); background: var(--surface); padding: .3rem .65rem; border-radius: 999px; font-size: .85rem; }
+.chip.hot { background: var(--pink); border-color: transparent; color: var(--ink); }
+
+/* Edu + certs */
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.two > div { min-width: 0; }
+.gpa { font-family: var(--f-mono); font-size: 2.4rem; font-weight: 600; color: var(--teal); line-height: 1; margin: .75rem 0 .25rem; }
+.gpa small { font-size: 1rem; color: var(--muted); }
+.certs { list-style: none; padding: 0; margin: 0; display: grid; gap: .55rem; }
+.certs li { display: flex; justify-content: space-between; gap: 1rem; border-bottom: 1px dashed var(--line); padding-bottom: .5rem; font-size: .93rem; }
+.certs li span:last-child { color: var(--muted); text-align: right; font-size: .85rem; }
+
+/* Contact */
+.contact { background: var(--ink); color: var(--bg); border-radius: 20px; padding: 2.5rem; display: grid; gap: 1.25rem; }
+.contact h2 { color: var(--bg); margin: 0; }
+.contact p { margin: 0; max-width: 55ch; opacity: .85; }
+.contact .row { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
+.contact code { font-family: var(--f-mono); background: color-mix(in srgb, var(--bg) 14%, transparent); padding: .5rem .8rem; border-radius: 8px; font-size: .9rem; user-select: all; overflow-wrap: anywhere; }
+.contact .btn { border-color: var(--bg); color: var(--bg); }
+.contact .btn.primary { background: var(--bg); color: var(--ink); }
+footer { padding-block: 2rem 3rem; font-size: .82rem; color: var(--muted); font-family: var(--f-mono); }
+
+@media (max-width: 720px) {
+  .log-row, .job, .two { grid-template-columns: 1fr; gap: .75rem; }
+  .contact { padding: 1.75rem 1.25rem; }
+  nav ul { gap: .9rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .link, .status i { animation: none; }
+  .btn:hover { transform: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav aria-label="Main">
+    <a class="mark" href="#top">desi<span>.</span>ratnasari</a>
+    <ul>
+      <li><a href="#impact">Impact</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero" id="top">
+    <div>
+      <span class="status"><i></i>Open to Data Engineering roles · Jakarta</span>
+      <h1>Desi<br><em>Ratnasari</em></h1>
+      <p class="role">Data Engineer · ETL Developer</p>
+      <p class="lead">I build and run the pipelines that move data from databases, APIs and object storage into an Oracle Exadata warehouse, then keep it fast and correct across DEV, UAT and PROD. Two years on Dataiku DSS and Oracle, an Informatics degree with a 3.94 GPA, and a habit of measuring every fix.</p>
+      <div class="cta">
+        <a class="btn primary" href="#contact">Get in touch</a>
+        <a class="btn" href="https://bit.ly/portofoliodesiratna" target="_blank" rel="noopener">Portfolio PDF</a>
+        <a class="btn" href="https://linkedin.com/in/desiratnasari26" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="pipe" role="img" aria-label="Typical pipeline: sources PostgreSQL, APIs and S3 flow through Dataiku DSS into Oracle Exadata, then to BI and Customer-360 consumers.">
+      <div class="pipe-head"><span>scenario: daily_ingest · status SUCCESS</span><span>460 min → 1.6 min</span></div>
+      <div class="flow">
+        <div class="node n1"><b>Sources</b><small>PostgreSQL · API · S3</small></div>
+        <div class="link"></div>
+        <div class="node n2"><b>Dataiku DSS</b><small>Python · SQL recipes</small></div>
+        <div class="link"></div>
+        <div class="node n3"><b>Oracle Exadata</b><small>DWH · incremental</small></div>
+        <div class="link"></div>
+        <div class="node n4"><b>Consumers</b><small>BI · Customer-360</small></div>
+      </div>
+    </div>
+  </header>
+
+  <section id="impact">
+    <p class="eyebrow">Run log</p>
+    <h2>Results I can put a number on</h2>
+    <div class="log">
+      <div class="log-row">
+        <div><h3>Daily ingest job tuned</h3><p>Rebuilt as an incremental load with SQL Profiles on Oracle.</p></div>
+        <div class="metric">
+          <span class="big">460 → 1.6 min</span><span class="sub">about 99.7% less runtime</span>
+          <div class="bars" aria-hidden="true">
+            <div class="bar">before<span class="before" style="width:100%"></span></div>
+            <div class="bar">after<span class="after" style="width:0.35%"></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="log-row">
+        <div><h3>Batch job tuned</h3><p>Same approach applied to a heavy batch workload.</p></div>
+        <div class="metric">
+          <span class="big">90 → 5 min</span><span class="sub">18× faster</span>
+          <div class="bars" aria-hidden="true">
+            <div class="bar">before<span class="before" style="width:100%"></span></div>
+            <div class="bar">after<span class="after" style="width:5.6%"></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="log-row">
+        <div><h3>Large delivery to UAT and sandbox</h3><p>End-to-end load with duplicate checks at every stage.</p></div>
+        <div class="metric"><span class="big">1.25B rows</span><span class="sub">0 duplicates</span></div>
+      </div>
+      <div class="log-row">
+        <div><h3>Replication reconciled</h3><p>Row-level reconciliation of replicated data across the branch network.</p></div>
+        <div class="metric"><span class="big">906M rows</span><span class="sub">385 branches</span></div>
+      </div>
+      <div class="log-row">
+        <div><h3>Silent data loss recovered</h3><p>Traced the root cause, backfilled, and wrote the RCA.</p></div>
+        <div class="metric"><span class="big">6 months</span><span class="sub">of data restored</span></div>
+      </div>
+      <div class="log-row">
+        <div><h3>Warehouse storage reclaimed</h3><p>Cleanup of unused segments and stale objects.</p></div>
+        <div class="metric"><span class="big">~1.25 TB</span><span class="sub">freed</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <p class="eyebrow">Experience</p>
+    <h2>Where I have worked</h2>
+    <div class="jobs">
+      <article class="job">
+        <div class="when">Mar 2025 – Present</div>
+        <div>
+          <h3>IT Data Platform Engineer</h3>
+          <p class="org">PT Adira Dinamika Multi Finance Tbk</p>
+          <ul>
+            <li>Build and maintain Dataiku ETL pipelines from PostgreSQL, APIs and S3 into an Oracle Exadata warehouse; delivered <strong>1.25B rows</strong> to UAT and sandbox with zero duplicates.</li>
+            <li>Tuned slow jobs with incremental loads and SQL Profiles: a daily ingest from <strong>460 to 1.6 min</strong> and a batch job from <strong>90 to 5 min</strong>; reclaimed <strong>~1.25 TB</strong> of storage.</li>
+            <li>Troubleshoot production data and write RCAs: recovered <strong>6 months</strong> of silently lost data and reconciled <strong>906M</strong> replicated rows across 385 branches.</li>
+            <li>Administer Dataiku, Oracle DWH, OpenMetadata (<strong>51 domains, 7 teams</strong>) and Ceph S3 (<strong>58 buckets, 40 users</strong>); deploy across DEV, UAT and PROD.</li>
+            <li>Design conceptual data models and ERDs; use AI-assisted tools (Claude Code) to automate scripting.</li>
+          </ul>
+        </div>
+      </article>
+      <article class="job">
+        <div class="when">Feb 2024 – Dec 2024</div>
+        <div>
+          <h3>Data Management Technology Intern</h3>
+          <p class="org">PT Bank CIMB Niaga Tbk</p>
+          <ul>
+            <li>Executed SIT and UAT testing for Master Data Management systems using SQL Server.</li>
+            <li>Validated and standardized data quality to keep records accurate and consistent.</li>
+            <li>Tracked and reported defects, working with stakeholders to resolve them.</li>
+            <li>Researched and evaluated Informatica Customer 360 to support system enhancement.</li>
+          </ul>
+        </div>
+      </article>
+      <article class="job">
+        <div class="when">Nov 2023 – Dec 2023</div>
+        <div>
+          <h3>Data Entry Clerk</h3>
+          <p class="org">DKPP RI</p>
+          <ul>
+            <li>Processed and cataloged 500+ entries in Excel under tight deadlines with 100% accuracy.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="projects">
+    <p class="eyebrow">Projects</p>
+    <h2>Pipelines and things I have built</h2>
+    <div class="grid">
+      <div class="proj"><h3>Loyalty data ingest</h3><p>Daily ingest of loyalty program data from PostgreSQL into Oracle.</p><div class="tags"><span class="tag">Dataiku</span><span class="tag">PostgreSQL</span><span class="tag">Oracle</span></div></div>
+      <div class="proj"><h3>Refined loyalty layer</h3><p>Curated loyalty tables that feed BI dashboards and Customer-360.</p><div class="tags"><span class="tag">SQL</span><span class="tag">Data modeling</span></div></div>
+      <div class="proj"><h3>Penalty and collection-partner reporting</h3><p>Report tables for Finance to monitor penalties and collection partners.</p><div class="tags"><span class="tag">PL/SQL</span><span class="tag">Dataiku</span></div></div>
+      <div class="proj"><h3>Monthly RPA file loader</h3><p>Picks up monthly RPA output from S3 object storage and loads it into an Oracle table.</p><div class="tags"><span class="tag">Ceph S3</span><span class="tag">Python</span></div></div>
+      <div class="proj"><h3>Nightly Customer-360 build</h3><p>Builds and publishes the Customer-360 view to downstream applications every night.</p><div class="tags"><span class="tag">Oracle Exadata</span><span class="tag">Scheduling</span></div></div>
+      <div class="proj"><h3>Scenario health monitor</h3><p>Dataiku webapp showing every scenario run's health on one screen, with a Python backend.</p><div class="tags"><span class="tag">Dataiku webapp</span><span class="tag">Python</span></div></div>
+    </div>
+
+    <h3 class="sub-h">Academic</h3>
+    <div class="grid">
+      <div class="proj"><h3>Computer vision with CNN + CLAHE</h3><p>Image classification with contrast enhancement as preprocessing.</p><div class="tags"><span class="tag">Python</span><span class="tag">CNN</span></div></div>
+      <div class="proj"><h3>KULINERIN</h3><p>Full-stack website for discovering Indonesian food.</p><div class="tags"><span class="tag">Full-stack</span></div></div>
+      <div class="proj"><h3>PAMELA</h3><p>Mobile app UI/UX design prototyped in Figma.</p><div class="tags"><span class="tag">Figma</span><span class="tag">UI/UX</span></div></div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <p class="eyebrow">Toolkit</p>
+    <h2>What I work with</h2>
+    <div class="skills">
+      <div><h3>Core</h3><div class="chips"><span class="chip hot">ETL Development</span><span class="chip hot">Oracle Data Warehouse</span><span class="chip hot">Query Tuning</span><span class="chip">Data Quality</span><span class="chip">Data Modeling</span><span class="chip">Data Governance</span><span class="chip">Database Administration</span><span class="chip">SIT/UAT Testing</span><span class="chip">Production Support</span><span class="chip">Incident Management</span></div></div>
+      <div><h3>Platforms</h3><div class="chips"><span class="chip hot">Dataiku DSS</span><span class="chip hot">Oracle Exadata Cloud</span><span class="chip">Oracle GoldenGate</span><span class="chip">Informatica</span><span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">SQL Server</span><span class="chip">Ceph S3</span><span class="chip">OpenMetadata</span><span class="chip">GCP</span><span class="chip">OCI</span></div></div>
+      <div><h3>Languages and tools</h3><div class="chips"><span class="chip hot">SQL</span><span class="chip hot">PL/SQL</span><span class="chip hot">Python</span><span class="chip">Tableau</span><span class="chip">Jupyter</span><span class="chip">Git</span><span class="chip">DBeaver</span><span class="chip">Claude Code</span><span class="chip">Draw.io</span><span class="chip">Figma</span></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="two">
+      <div>
+        <p class="eyebrow">Education</p>
+        <h3>Bachelor of Computer Science (Informatics)</h3>
+        <p style="margin:.25rem 0 0;color:var(--muted)">UPN Veteran Jakarta · Aug 2021 – Jul 2025</p>
+        <p class="gpa">3.94<small> / 4.00 GPA</small></p>
+        <p style="margin:0;color:var(--muted);font-size:.93rem">Class President · Head of Academic Department, BEM FIK UPNVJ · 2nd Place, SLASH National Essay Competition 2023</p>
+      </div>
+      <div>
+        <p class="eyebrow">Certifications</p>
+        <ul class="certs">
+          <li><span>IT Specialist – Data Analytics</span><span>Certiport / Pearson VUE</span></li>
+          <li><span>Junior/Associate Data Scientist</span><span>BNSP</span></li>
+          <li><span>Data Science for Business Using Python</span><span>BISA AI Academy</span></li>
+          <li><span>Java Foundations Certified Junior Associate</span><span>Oracle Academy</span></li>
+          <li><span>SQL</span><span>Sololearn</span></li>
+          <li><span>Intro to Data Analytics</span><span>RevoU</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="border-top:0">
+    <div class="contact">
+      <p class="eyebrow" style="color:inherit;opacity:.7;margin:0">Contact</p>
+      <h2>Have a pipeline that needs building or fixing?</h2>
+      <p>I am open to Data Engineer, ETL Developer and Data Platform roles. Email is the fastest way to reach me.</p>
+      <div class="row">
+        <code id="email">desrtnsr@gmail.com</code>
+        <button class="btn primary" id="copy" type="button">Copy email</button>
+        <a class="btn" href="https://linkedin.com/in/desiratnasari26" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2026 Desi Ratnasari · Jakarta, Indonesia</footer>
+</div>
+
+<script>
+document.getElementById('copy').addEventListener('click', function () {
+  var btn = this, text = document.getElementById('email').textContent;
+  function done() { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy email'; }, 1800); }
+  function fallback() {
+    var r = document.createRange(); r.selectNodeContents(document.getElementById('email'));
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Press Ctrl+C';
+  }
+  try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+});
+</script>
+</body>
+</html>
